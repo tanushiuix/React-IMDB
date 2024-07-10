@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  height: 60px;
+  border: 1px solid black;
+  background-color: black;
+}
+.navbar_logo {
+  width: 40%;
+  justify-content: flex-start;
+}
+.logo {
+  margin-top: 15px;
+  color: rgb(98, 200, 218);
+  margin-left: 300px;
+  text-decoration: none;
+}
+.navbar_links {
+  width: 50%;
+
+  display: flex;
+  justify-content: center;
+}
+.logo_url {
+  margin-top: 15px;
+  width: 200px;
+}
+.github_url {
+  margin-top: 6px;
+  width: 48px;
+  height: 80%;
+  border-radius: 50%;
+}

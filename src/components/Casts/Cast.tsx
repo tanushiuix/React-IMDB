@@ -1,37 +1,31 @@
 import React from "react";
+import "./cast.css";
+import CastProps from "./types";
 
-interface CastProps {
-  castData: {
-    character?: string;
-    original_name?: string;
-    profile_path?: string;
-  };
-}
-
-const Casts: React.FC<CastProps> = ({ castData }) => {
-  const { character, original_name, profile_path } = castData;
-
-  if (!original_name || !character || !profile_path) {
+const Cast: React.FC<CastProps> = ({ castData }) => {
+  if (
+    !castData?.original_name ||
+    !castData?.character ||
+    !castData?.profile_path
+  ) {
     return null;
   }
 
-  const imageUrl = profile_path
-    ? `https://image.tmdb.org/t/p/w185/${profile_path}`
+  const imageUrl = castData?.profile_path
+    ? `https://image.tmdb.org/t/p/w185/${castData?.profile_path}`
     : "";
 
   return (
     <div className="casts">
-      <div className="cast">
-        <img
-          src={imageUrl}
-          className="cast-image"
-          alt={`${original_name} profile`}
-        />
-        <h3 className="name">{original_name}</h3>
-        <h4 className="character">{character}</h4>
-      </div>
+      <img
+        src={imageUrl}
+        className="cast-image"
+        alt={`${castData?.original_name} profile`}
+      />
+      <span className="name">{castData?.original_name}</span>
+      <span className="character">{castData?.character}</span>
     </div>
   );
 };
 
-export default Casts;
+export default Cast;

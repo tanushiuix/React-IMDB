@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Body from "./components/Body";
-import MovieDetails from "./components/Movies/MovieDetails";
+import Navbar from "./components/Header/Navbar";
+import MovieGallery from "./container/movie-gallery/MovieGallery";
+import MovieDetail from "./container/MovieDetail";
+
 const App: React.FC = () => {
   return (
     <>
       <Navbar />
-      <Body />
+      <MovieGallery />
     </>
   );
 };
@@ -18,7 +19,7 @@ const RouterApp: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/movies/:resId" element={<MovieDetails />} />
+        <Route path="/movies/:resId" element={<MovieDetail />} />
       </Routes>
     </BrowserRouter>
   );

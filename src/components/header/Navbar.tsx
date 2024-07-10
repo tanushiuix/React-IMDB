@@ -1,6 +1,7 @@
 import React from "react";
-import { github_url, logo_url } from "../utils/Common";
 import { Link } from "react-router-dom";
+import { logo_Url, github_Url } from "../../utils/constants";
+import "./Navbar.css";
 
 const Navbar: React.FC = () => {
   return (
@@ -12,14 +13,14 @@ const Navbar: React.FC = () => {
       </div>
       <div className="navbar_links">
         <Link to="/">
-          <img src={logo_url} alt="Logo" className="logo_url" />
+          <img src={logo_Url} alt="Logo" className="logo_url" />
         </Link>
         <a
           href="https://www.themoviedb.org/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src={github_url} alt="GitHub" className="github_url" />
+          <img src={github_Url} alt="GitHub" className="github_url" />
         </a>
       </div>
     </div>

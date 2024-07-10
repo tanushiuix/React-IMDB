@@ -1,9 +1,6 @@
 import React from "react";
-
-interface SearchInputProps {
-  value: string;
-  onChange: (value: string) => void;
-}
+import "./Search.css";
+import SearchInputProps from "./types";
 
 const SearchInput: React.FC<SearchInputProps> = ({ value, onChange }) => {
   return (

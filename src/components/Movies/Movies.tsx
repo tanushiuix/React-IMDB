@@ -1,14 +1,8 @@
 import React from "react";
+import CardsProps from "./types";
+import "./Movies.css";
 
-interface CardsProps {
-  cardsData: {
-    original_title: string;
-    poster_path: string;
-    vote_average: number;
-  };
-}
-
-const Cards: React.FC<CardsProps> = ({ cardsData }) => {
+const Movies: React.FC<CardsProps> = ({ cardsData }) => {
   const { original_title, poster_path, vote_average } = cardsData;
   const formattedVoteAverage = vote_average.toFixed(1);
 
@@ -18,13 +12,11 @@ const Cards: React.FC<CardsProps> = ({ cardsData }) => {
   const imageUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 
   return (
-    <div className="cards">
-      <div className="card">
-        <img src={imageUrl} alt={original_title} className="card-image" />
-        <label className="votecount">{formattedVoteAverage}</label>
-      </div>
+    <div className="card">
+      <img src={imageUrl} alt={original_title} className="card-image" />
+      <label className="votecount">{formattedVoteAverage}</label>
     </div>
   );
 };
 
-export default Cards;
+export default Movies;
