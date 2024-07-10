@@ -1,10 +1,14 @@
 import { useEffect, useRef } from "react";
 
-const useIntersectionObserver = (fetchData, sentinelRef, loading) => {
-  const observer = useRef(null);
+const useIntersectionObserver = (
+  fetchData: () => void,
+  sentinelRef: React.MutableRefObject<HTMLElement | null>,
+  loading: boolean
+): IntersectionObserver | null => {
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const intersectionCallback = (entries,observer) => {
+    const intersectionCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !loading) {
           fetchData();

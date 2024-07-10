@@ -7,6 +7,7 @@ export interface TrendingMovie {
   poster_path: string;
   media_type: string;
   adult: boolean;
+  original_title: string;
   original_language: string;
   genre_ids: number[];
   popularity: number;

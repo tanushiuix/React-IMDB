@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { baseUrl } from "../utils/constants";
-import { Movie } from "../types/cast";
 import { getTrendingMovies } from "../services/trendingMovies";
 import { TrendingMovie } from "../types/movie";
 

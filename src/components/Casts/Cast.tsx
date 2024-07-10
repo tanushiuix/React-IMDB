@@ -1,8 +1,12 @@
 import React from "react";
 import "./cast.css";
-import CastProps from "./types";
+import { Cast } from "../../types/cast";
 
-const Cast: React.FC<CastProps> = ({ castData }) => {
+interface ModalCastData {
+  castData: Cast;
+}
+
+const Cast: React.FC<ModalCastData> = ({ castData }) => {
   if (
     !castData?.original_name ||
     !castData?.character ||

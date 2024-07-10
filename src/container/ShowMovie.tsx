@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Movies from "../components/Movies";
+import Movies from "../components/movies/Movies";
 import { Link } from "react-router-dom";
-import { Movie } from "../types/types";
+
 import useTrendingMovies from "../hooks/useTrendingMovies";
+import { TrendingMovie } from "../types/movie";
 
 const ShowMovie: React.FC<{ apiKey: string }> = ({ apiKey }) => {
-  const [cards, setCards] = useState<Movie[]>([]);
+  const [cards, setCards] = useState<TrendingMovie[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [totalPages, setTotalPages] = useState<number>(0);
@@ -29,7 +30,7 @@ const ShowMovie: React.FC<{ apiKey: string }> = ({ apiKey }) => {
 
   return (
     <div className="card-container">
-      {cards.map((item: Movie) => (
+      {cards.map((item: TrendingMovie) => (
         <Link key={item.id} to={`/movies/${item.id}`}>
           <Movies cardsData={item} />
         </Link>

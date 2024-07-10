@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import SearchInput from "../../components/searchBox/SearchInput";
 import Movies from "../../components/movies/Movies";
-
 import { Link } from "react-router-dom";
 import useMovieSearch from "../../hooks/useMovieSearch";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import useTrendingMovies from "../../hooks/useTrendingMovies";
-import { Movie } from "../../types/cast";
+import { Search } from "../../types/search";
+import { TrendingMovie } from "../../types/movie";
 
 const MovieGallery: React.FC = () => {
-  const [movieCards, setMovieCards] = useState<Movie[]>([]);
+  const [movieCards, setMovieCards] = useState<TrendingMovie[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -54,22 +54,22 @@ const MovieGallery: React.FC = () => {
         {showSearchResults && searchResults.length > 0 ? (
           <div className="search-results">
             <div className="card-container">
-              {searchResults.map((item) => (
+              {searchResults.map((item: Search) => (
                 <Movies key={item.id} cardsData={item} />
               ))}
             </div>
           </div>
         ) : (
           <div className="card-container">
-            {movieCards.map((item: Movie) => (
+            {movieCards.map((item: TrendingMovie) => (
               <Link key={item.id} to={"/movies/" + item.id}>
-                <Movies cardsData={item} />
+                <Movies cardsData={item} key={item.id} />
               </Link>
             ))}
 
             <div ref={sentinelRef} />
 
-            {trendingLoading && <div>Loading...</div>}
+            {trendingLoading}
           </div>
         )}
 

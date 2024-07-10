@@ -1,31 +1,17 @@
 import { useState, useCallback } from "react";
 import { debounce } from "./useDebounce";
-import { apiKey, baseUrl } from "../utils/constants";
-import { Movie } from "../types/cast";
-import { options } from "../utils/constants";
+import { Search } from "../types/search";
+import { fetchSearchResults } from "../services/searchMovie";
 
 const useMovieSearch = () => {
-  const [searchResults, setSearchResults] = useState<Movie[]>([]);
+  const [searchResults, setSearchResults] = useState<Search[]>([]);
   const [showSearchResults, setShowSearchResults] = useState<boolean>(false);
 
   const debouncedFetchSearchResults = useCallback(
     debounce(async (query: string) => {
-      try {
-        const response = await fetch(
-          `${baseUrl}/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
-          options
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setSearchResults(data.results);
-        setShowSearchResults(true);
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-        setSearchResults([]);
-        setShowSearchResults(false);
-      }
+      const results = await fetchSearchResults(query);
+      setSearchResults(results);
+      setShowSearchResults(true);
     }, 500),
     []
   );

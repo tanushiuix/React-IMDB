@@ -1,6 +1,7 @@
+import { Cast, GetAllCastCrewResponse } from "../types/cast";
 import { apiKey } from "../utils/constants";
 
-export const getCast = async ({ resId }) => {
+export const getCast = async ({ resId }): Promise<Cast[] | null> => {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${resId}/credits?language=en-US`,
@@ -12,13 +13,10 @@ export const getCast = async ({ resId }) => {
         },
       }
     );
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
 
+    const data = (await response.json()) as GetAllCastCrewResponse;
     return data.cast;
   } catch (error) {
-    console.error("Error fetching movie details:", error);
+    return null;
   }
 };

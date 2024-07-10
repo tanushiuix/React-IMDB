@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { Cast } from "../types/types";
-
 import { getCast } from "../services/cast";
+import { Cast } from "../types/cast";
+
 const useCastDetails = () => {
-  const [castDetails, setCastDetails] = useState<Cast[] | undefined>(undefined);
+  const [castDetails, setCastDetails] = useState<Cast[] | null>(null);
   const { resId } = useParams<{ resId: string }>();
 
   useEffect(() => {
